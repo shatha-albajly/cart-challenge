@@ -17,19 +17,7 @@ if(isset($_POST['increase'])) {
     $_SESSION['cart'][$id]=$_SESSION['cart'][$id]+1;
 }
 
-if (isset($_POST)){
-    echo "</br>";
-    print_r($_POST);
-//   if ($_GET['action'] == 'remove'){
-//       foreach ($_SESSION['cart'] as $key => $value){
-//           if($value["product_id"] == $_GET['id']){
-//               unset($_SESSION['cart'][$key]);
-//               echo "<script>alert('Product has been Removed...!')</script>";
-//               echo "<script>window.location = 'cart.php'</script>";
-//           }
-//       }
-//   }
-}
+
 
 
 ?>
@@ -75,32 +63,15 @@ if (isset($_POST)){
                 $total = 0;
                     if (isset($_SESSION['cart'])){
                         $product_id = $_SESSION['cart'];
-                        print_r($product_id );
                         foreach ($product_id as $id => $value){
-                            print_r($value );
-                                echo "</br>";
                             $c=$value;
                            
                             $result = $db->getData();
                             while ($row = mysqli_fetch_assoc($result)){
                                 if ($row['id'] == $id){
 
-                                // print_r("total" );
-                                // print_r((int)$row['product_price'] );
-                                // print_r("total" );
-
-                                // print_r($total );
-                                // print_r("total" );
-
-
-                                // print_r($value );
-                                // echo "</br>";
-                                // print_r($row );
-                                // print_r($row['id'] );
-
-
                                     cartElement($row['id'],$row['product_image'], $row['product_name'],$row['product_price'], $row['id'],$value);
-                                    $total = ($total + (int)$row['product_price'])*$value;
+                                    $total = ( (int)$row['product_price'])*$value;
                                     $t=$t+$value;
                                     $p=$p+$total;
                              
@@ -126,7 +97,6 @@ if (isset($_POST)){
                     <div class="row price-details">
                         <div class="col-md-6">
                             <?php
-                            print_r( $_SESSION['cart']);
                             if (isset($_SESSION['cart'])){
                                 $count  = count($_SESSION['cart'])*$c;
                                 echo "<h6>Price ($t items)</h6>";
@@ -143,7 +113,7 @@ if (isset($_POST)){
                             <h6 class="text-success">FREE</h6>
                             <hr>
                             <h6>$<?php
-                            echo $total;
+                            echo $p;
                             ?></h6>
                         </div>
                     </div>

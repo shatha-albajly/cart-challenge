@@ -38,11 +38,7 @@ function component($productname, $productprice, $productimg, $productid){
 
 function cartElement($id,$productimg, $productname, $productprice, $productid, $quantity){
     $quantityy=$_SESSION['cart'][(int)$id];
-    echo  'quantityy';
-    echo  $id;
-    echo  'quantityddy';
-    print_r($_SESSION['cart']);
-
+   
     $element = "
     
     <form action=\"cart.php\" method=\"post\" class=\"cart-items\">

@@ -10,28 +10,15 @@ require_once ('./php/component.php');
 $database = new CreateDb("Productdb", "Producttb");
 
 if (isset($_POST['add'])){
-  
-
             $product_id =$_POST['product_id'];
             $total=0;
             if (isset($_SESSION['cart'])){
-                print_r( isset($_SESSION['cart'][(int)$product_id]));
                     if(isset($_SESSION['cart'][(int)$product_id])){
-
-
-                        print_r($_SESSION['cart']);
-
                         $total= $_SESSION['cart'][(int)$product_id];
                         $total=$total+1;
                         $_SESSION['cart'][(int)$product_id]= $total;
-            }
-               else{
-
+               }else{
                 $product_id =$_POST['product_id'];
-
-                print_r('product_id');
-
-
                 $_SESSION['cart'][(int)$product_id]= 1;
             }}
 }
